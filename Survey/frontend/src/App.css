@@ -1,0 +1,19 @@
+
+/* Ensure navbar height is reserved and sidebar starts below navbar */
+.main-content-layout {
+	margin-top: 112px; /* Adjust if your navbar is taller/shorter */
+}
+
+.sidebar-fixed {
+	position: relative;
+	width: 16rem;
+	min-width: 16rem;
+	height: calc(100vh - 112px);
+}
+
+.sidebar-content {
+	position: sticky;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}

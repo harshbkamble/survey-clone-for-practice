@@ -1,15 +1,19 @@
 import React from 'react'
+import { Outlet } from 'react-router-dom'
 import Navbar from './Navbar.jsx'
 import Sidebar from './Sidebr.jsx'
+import Home from './Home.jsx'
 
 const Layout = () => {
   return (
     <div>
       <Navbar />
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', marginTop: '10px' }} className="main-content-layout">
         <Sidebar />
-        <main>
-          <h2>Main Content Area</h2>
+        {/* <main style={{ flex: 1, padding: '1rem' }}> */}
+         <main className="flex-1 p-2 mt-2 ml-64">
+          <Outlet />
+          <Home />
         </main>
       </div>
     </div>
