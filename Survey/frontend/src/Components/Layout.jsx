@@ -10,7 +10,6 @@ const Layout = () => {
       <Navbar />
       <div style={{ display: 'flex', marginTop: '10px' }} className="main-content-layout">
         <Sidebar />
-        {/* <main style={{ flex: 1, padding: '1rem' }}> */}
          <main className="flex-1 p-2 mt-2 ml-64">
           <Outlet />
           <Home />
