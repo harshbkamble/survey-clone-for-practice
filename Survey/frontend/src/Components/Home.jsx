@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useDrop } from 'react-dnd'
+import Sidebr from './Sidebr'
 import Card from "./Card";
 
 const Home = () => {
@@ -116,6 +117,7 @@ const Home = () => {
       ${isOver ? "border-blue-500 bg-blue-50" : "border-dashed border-blue-400"}`}
     >
       <h1 className="text-xl font-bold mb-4">Drop survey elements here</h1>
+      <button className='bg-blue-500 px-4 py-2 rounded' onClick={() => addElement("input")}>Add Question</button>
       {elements.map((el, idx) => (
         <Card key={idx}>
           <div className="flex justify-between items-start">
@@ -130,7 +132,9 @@ const Home = () => {
           </div>
         </Card>
       ))}
+      <Sidebr />
     </div>
+
   )
 }
 

@@ -1,6 +1,9 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   return (
     <header className="sticky top-0 z-50">
       {/* Top navbar */}
@@ -23,9 +26,13 @@ const Navbar = () => {
         <div className="max-w-screen-xl px-4 py-3 mx-auto">
           <div className="flex items-center">
             <ul className="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm">
-              <li><a href="#" className="text-gray-900 dark:text-white hover:underline">Designer</a></li>
-              <li><a href="#" className="text-gray-900 dark:text-white hover:underline">Preview</a></li>
-              <li><a href="#" className="text-gray-900 dark:text-white hover:underline">Json Editor</a></li>
+              <li><button onClick={() => navigate('/')} className="text-gray-900 dark:text-white hover:underline">Designer</button></li>
+              <li>
+                <button onClick={() => navigate('/preview')} className="text-gray-900 dark:text-white hover:underline">Preview</button>
+              </li>
+              <li>
+                <button onClick={() => navigate('/json')} className="text-gray-900 dark:text-white hover:underline">Json Editor</button>
+              </li>
             </ul>
           </div>
         </div>
