@@ -10,37 +10,66 @@ const Preview = () => {
     const saved = localStorage.getItem("elements");
     if (saved) {
       setElements(JSON.parse(saved));
+      console.log("Loaded elements:", JSON);
+      console.log("Loaded parsed elements:", JSON.parse(saved));
     }
   }, []);
 
-  const renderElement = (type, index) => {
-    switch (type) {
+  const renderElement = (el, index) => {
+    switch (el.type) {
       case "radio":
         return (
           <div>
-            <p className="font-semibold mb-2">Question: Choose one option</p>
+            <p className="font-semibold mb-2 ">Question: {el.question}</p>
             <div className="flex flex-col gap-2">
-              <label className="flex items-center gap-2">
-                <input type="radio" name={`radio-${index}`} /> Option 1
-              </label>
-              <label className="flex items-center gap-2">
-                <input type="radio" name={`radio-${index}`} /> Option 2
-              </label>
-              <label className="flex items-center gap-2">
-                <input type="radio" name={`radio-${index}`} /> Option 3
-              </label>
-              <label className="flex items-center gap-2">
-                <input type="radio" name={`radio-${index}`} /> Option 4
-              </label>
+              {el.options.map((opt, i) => (
+                <label key={i} className="flex items-center gap-2">
+                  <input type="radio" name={`radio-${index}`} /> {opt}
+                </label>
+              ))}
             </div>
+          </div>
+        );
+      case "checkbox":
+        return (
+          <div>
+            <p className="font-semibold mb-2">Question: {el.question}</p>
+            {el.options.map((opt, i) => (
+              <label key={i} className="flex items-center gap-2">
+                <input type="checkbox" /> {opt}
+              </label>
+            ))}
+          </div>
+        );
+      case "dropdown":
+        return (
+          <div>
+            <p className="font-semibold mb-2">Question: {el.question}</p>
+            <select className="border p-2 rounded w-full">
+              <option>Select</option>
+              {el.options.map((opt, i) => (
+                <option key={i}>{opt}</option>
+              ))}
+            </select>
+          </div>
+        );
+      case "multidropdown":
+        return (
+          <div>
+            <p className="font-semibold mb-2">Question: {el.question}</p>
+            <select multiple className="border p-2 rounded w-full">
+              {el.options.map((opt, i) => (
+                <option key={i}>{opt}</option>
+              ))}
+            </select>
           </div>
         );
       case "rating":
         return (
           <div>
-            <p className="font-semibold mb-2">Question: Rate from 1 to 5</p>
+            <p className="font-semibold mb-2">Question: {el.question}</p>
             <div className="flex gap-2">
-              {[1, 2, 3, 4, 5].map((num) => (
+              {el.options.map((num) => (
                 <span key={num} className="px-2 py-1 border rounded">
                   {num}
                 </span>
@@ -51,49 +80,12 @@ const Preview = () => {
       case "input":
         return (
           <div>
-            <p className="font-semibold mb-2">Question: Enter your response</p>
+            <p className="font-semibold mb-2">Question: {el.question}</p>
             <input
               type="text"
               placeholder="Enter text"
               className="border p-2 rounded w-full"
             />
-          </div>
-        );
-      case "checkbox":
-        return (
-          <div>
-            <p className="font-semibold mb-2">Question: Select all that apply</p>
-            <label className="flex items-center gap-2">
-              <input type="checkbox" /> Option A
-            </label>
-            <label className="flex items-center gap-2">
-              <input type="checkbox" /> Option B
-            </label>
-            <label className="flex items-center gap-2">
-              <input type="checkbox" /> Option C
-            </label>
-          </div>
-        );
-      case "dropdown":
-        return (
-          <div>
-            <p className="font-semibold mb-2">Question: Select one option</p>
-            <select className="border p-2 rounded w-full">
-              <option>Select</option>
-              <option>Option 1</option>
-              <option>Option 2</option>
-            </select>
-          </div>
-        );
-      case "multidropdown":
-        return (
-          <div>
-            <p className="font-semibold mb-2">Question: Select multiple options</p>
-            <select multiple className="border p-2 rounded w-full">
-              <option>Option A</option>
-              <option>Option B</option>
-              <option>Option C</option>
-            </select>
           </div>
         );
       default:
@@ -102,7 +94,7 @@ const Preview = () => {
   };
 
   return (
-    <div className="p-4 bg-white-200 min-h-screen ml-20">
+    <div className="p-4 bg-white-200 min-h-screen ml-90 mt-15">
       <h1 className="text-xl font-bold mb-4">Survey Preview</h1>
       {elements.length === 0 ? (
         <p className="text-gray-500">No questions added yet.</p>
@@ -118,3 +110,18 @@ const Preview = () => {
 };
 
 export default Preview;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

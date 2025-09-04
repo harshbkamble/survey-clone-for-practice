@@ -32,7 +32,7 @@ const Sidebr = () => {
       aria-label="Sidebar"
     >
       <div className="h-full px-3 py-4 overflow-y-auto">
-        <h2 className="text-xl font-semibold mb-4 mt-10">Survey Elements</h2>
+        <h2 className="text-xl font-semibold mb-4 mt-3">Survey Elements</h2>
         <ul className="space-y-2 font-medium">
           <li>
             <DraggableItem type="radio" label="Radio Button" icon={<span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
